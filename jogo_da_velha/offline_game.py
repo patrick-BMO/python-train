@@ -1,79 +1,110 @@
-from core import offline_words as words
-from core import hangman, PublicWordGen
-from core import cls
+from asciiUi import PublicWordGen
 from random import choice
 
-def findIndex(char, text):
-    index = 0
-    list_index = []
-    while index != -1:
-        index = text.find(char, index+1)
-        list_index.append(index)
-    list_index.pop()
-
-    return list_index
-
-
-def Lose(secret):
-    cls()
-    print('---------------------------')
-    print('  Oce Perdeu meu chapa :(')
-    print('---------------------------')
-    print(secret)
-    exit()
-
-
-def Win():
-    cls()
-    print('---------------------------')
-    print('  Oce Ganhou meu chapa :D')
-    print('---------------------------')
-    exit()
-
-def offline_game():
+def OfflineGame():
     secret_word, tip = choice(words)
     secret_word = secret_word.lower()
-    gues_list = []
     public_word = PublicWordGen(secret_word)
 
-
-    attempt = 0
-    while True:
-        cls()
-        print(hangman[attempt], end='')
-        print(f'   DICA: {tip} {len(secret_word)} Letras.')
-        print(f'              Tentativas: {gues_list}', end='\n\n')
-        print(f'                == {public_word} ==', end='\n\n')
-        guess = input('Digite uma letra ou uma palavra: ')
-        gues_list.append(guess)
-
-
-        if len(guess) > 1:
-            print(guess)
-            print(secret_word)
-            if guess == secret_word:
-                Win()
-            
-            else:
-                attempt += 1
-        
-            
-
-        elif len(guess) == 0:
-            ...
-        
-        else:
-            found = findIndex(guess, secret_word)
-            if found == []:
-                attempt += 1
-            
-            else:
-                for i in found:
-                    public_word = public_word[:i] + secret_word[i:i+1] + public_word[i+1:]
-
-        
-        if attempt == 6: Lose(secret=secret_word)
-        if public_word == secret_word: Win()
+    return (secret_word, public_word, tip)
                 
 
-    
+words = [['Quiroptero', 'morcego'],
+['Quitinete', 'pequeno apartamento'],
+['Quinquela', 'tipo de barco'],
+['Quisquilho', 'coisa insignificante'],
+['Quisto', 'tumor'],
+['Rabdomante', 'pessoa que procura água com varinha'],
+['Rasteira', 'tipo de golpe'],
+['Ratel', 'animal parecido com a melgueira'],
+['Reaproveitamento', 'uso de materiais descartados'],
+['Recanto', 'lugar tranquilo'],
+['Reclusa', 'pessoa solitária'],
+['Recrudescimento', 'aumento da intensidade'],
+['Redoma', 'cobertura de vidro'],
+['Refúgio', 'lugar seguro'],
+['Regato', 'pequeno rio'],
+['Relógio de sol', 'ver o tempo na antiguidade'],
+['Remanso', 'lugar calmo em um rio'],
+['Renascimento', 'novo nascimento'],
+['Reptil', 'animal de sangue frio'],
+['Resquícios', 'restos'],
+['Retalho', 'pedaço de tecido'],
+['Retórica', 'arte de falar bem'],
+['Revelação', 'descoberta de algo oculto'],
+['Rhapsódia', 'composição musical irregular'],
+['Riqueza', 'grande quantidade de bens'],
+['Risco', 'perigo'],
+['Rituais', 'cerimônias'],
+['Robô', 'máquina que imita ações humanas'],
+['Roça', 'área cultivada'],
+['Roedor', 'animal que rói'],
+['Rolha', 'objeto para fechar garrafas'],
+['Romã', 'fruta'],
+['Ronco', 'som produzido durante o sono'],
+['Rosa dos ventos', 'instrumento de orientação'],
+['Rosácea', 'doença de pele'],
+['Rubi', 'pedra preciosa'],
+['Rústico', 'simples, sem refinamento'],
+['Sabia', 'ave'],
+['Sabugo', 'parte central do milho'],
+['Sacerdotisa', 'mulher que serve a um deus'],
+['Sagitário', 'sinal do zodíaco'],
+['Salmão', 'peixe'],
+['Salutar', 'saudável'],
+['Salutarismo', 'doutrina que prega a vida saudável'],
+['Salvação', 'ato de salvar'],
+['Samburá', 'armadilha para peixes'],
+['Sanfona', 'instrumento musical'],
+['Sanguessuga', 'animal que suga sangue'],
+['Santuário', 'lugar sagrado'],
+['Sapinho', 'pequeno anfíbio'],
+['Sarcófago', 'caixão de pedra'],
+['Sardinha', 'peixe'],
+['Satelite', 'corpo celeste que gira em torno de um planeta'],
+['Saturado', 'encharcado'],
+['Saudade', 'sentimento de falta'],
+['Saxofone', 'instrumento musical'],
+['Sebo', 'loja de livros usados'],
+['Seca', 'falta de chuva'],
+['Sedentarismo', 'falta de atividade física'],
+['Seiva', 'líquido que circula nas plantas'],
+['Selênio', 'elemento químico'],
+['Semente', 'origem de uma planta'],
+['Serpente', 'réptil'],
+['Serpentear', 'mover-se em curvas'],
+['Sertão', 'região seca'],
+['Sesmaria', 'grande extensão de terra'],
+['Símio', 'macaco'],
+['Simpósio', 'reunião para discutir um tema'],
+['Sinônimo', 'palavra com significado semelhante'],
+['Sirene', 'som alto para alertar'],
+['Sisal', 'fibra vegetal'],
+['Sismógrafo', 'aparelho para medir terremotos'],
+['Sótão', 'compartimento sob o telhado'],
+['Sovaco', 'parte do corpo'],
+['Suricate', 'animal mamífero'],
+['Suspiro', 'ato de respirar fundo'],
+['Tacacá', 'prato típico da Amazônia'],
+['Tapete voador', 'objeto mágico'],
+['Tarântula', 'aranha grande e peluda'],
+['Tartaruga', 'réptil de casco'],
+['Tasca', 'pequeno bar'],
+['Tebas', 'cidade antiga'],
+['Telhado', 'cobertura de um edifício'],
+['Tempo', 'duração'],
+['Tenaz', 'forte'],
+['Tendão', 'parte do corpo'],
+['Terraplanismo', 'teoria que a Terra é plana'],
+['Tesouro', 'riqueza escondida'],
+['Timbre', 'qualidade do som'],
+['Timbó', 'planta usada para pescar'],
+['Titã', 'gigante da mitologia grega'],
+['Toca', 'abrigo de animais'],
+['Tolda', 'cobertura para proteger do sol'],
+['Torpor', 'estado de letargia'],
+['Torrão', 'pedaço de terra seca'],
+['Trapiche', 'pequeno cais'],
+['Tribo', 'grupo social'],
+['Trombeta', 'instrumento musical'],
+['Tufão', 'vento forte']]

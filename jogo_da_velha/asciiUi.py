@@ -1,3 +1,6 @@
+import os
+cls = lambda: os.system('cls') or None
+
 def PublicWordGen(secret_word):
         if '-' in secret_word:
             public_word = ['_' if i != '-' else '-' for i in secret_word]
@@ -7,6 +10,21 @@ def PublicWordGen(secret_word):
         
         return ''.join(public_word)
 
+def Lose(secret):
+    cls()
+    print('---------------------------')
+    print('  Oce Perdeu meu chapa :(')
+    print('---------------------------')
+    print(secret)
+    exit()
+
+
+def Win():
+    cls()
+    print('---------------------------')
+    print('  Oce Ganhou meu chapa :D')
+    print('---------------------------')
+    exit()
 
 hangman = [''' | .__________))______|     
            | | / /      ||          
