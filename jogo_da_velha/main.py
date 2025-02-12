@@ -4,6 +4,8 @@ from asciiUi import cls, hangman, Win, Lose
 
 
 def remove_acentos(word):
+    """Função criada por IA mas conferida manualmente. kk"""
+    
     word = word.replace('á', 'a')
     word = word.replace('à', 'a')
     word = word.replace('ã', 'a')
@@ -31,11 +33,6 @@ def remove_acentos(word):
 def compareWords(word: str, word2: str):
     return remove_acentos(word.lower()) == remove_acentos(word2.lower())
 
-
-# Exemplo de uso:
-word = "Olá, você! Tudo bem?"
-new_word = remove_acentos(word)
-print(new_word)  # Saída: Ola, voce! Tudo bem?
 
 def findIndex(char, text):
     index = text.find(char)
