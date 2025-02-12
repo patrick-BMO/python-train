@@ -28,8 +28,8 @@ def remove_acentos(word):
     return word
 
 
-def compareWords(word, word2):
-    return word == remove_acentos(word2)
+def compareWords(word: str, word2: str):
+    return remove_acentos(word.lower()) == remove_acentos(word2.lower())
 
 
 # Exemplo de uso:
@@ -38,8 +38,9 @@ new_word = remove_acentos(word)
 print(new_word)  # Saída: Ola, voce! Tudo bem?
 
 def findIndex(char, text):
-    index = 0
-    list_index = []
+    index = text.find(char)
+    list_index = [index]
+
     while index != -1:
         index = text.find(char, index+1)
         list_index.append(index)
@@ -92,6 +93,7 @@ if __name__ == '__main__':
 
         else:
             found = findIndex(guess, secret_word)
+            print(found)
             if found == []:
                 attempt += 1
             
