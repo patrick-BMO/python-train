@@ -31,3 +31,14 @@ source .venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
+
+# Rode o programa
+Para Windows
+```bash
+python main.py
+```
+
+Para Linux/Mac
+```bash
+python3 main.py
+```
