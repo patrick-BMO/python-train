@@ -49,16 +49,22 @@ def findIndex(char, text):
     return list_index
 
 if __name__ == '__main__':
+    cls()
     while True:
         print('Deseja jogar online ou offline?')
         print('1 - Online')
         print('2 - Offline')
         mode = input('==> ')
         if mode == '1':
-            secret_word, public_word, tip = OnlineGame()
-            break
+            try:
+                secret_word, public_word, tip = OnlineGame()
+                break
 
-        elif mode == '2':
+            except:
+                input('Conexão não disponível, aperte "ENTER" para continuar')
+                mode = '2'
+
+        if mode == '2':
             secret_word, public_word, tip = OfflineGame()
             break
 
@@ -69,11 +75,13 @@ if __name__ == '__main__':
     guess_list = []
     while True:
         cls()
+        if mode == '2': print('Offline')
         print(hangman[attempt], end='')
         print(f'   DICA: {tip} {len(secret_word)} Letras.')
         print(f'              Tentativas: {guess_list}', end='\n\n')
         print(f'                == {public_word} ==', end='\n\n')
         guess = input('Digite uma letra ou uma palavra: ')
+
         guess_list.append(guess)
 
         if len(guess) > 1:

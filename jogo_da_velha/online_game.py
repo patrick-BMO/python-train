@@ -22,7 +22,7 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 def genTip(secret_word):
     response = model.generate_content(
-    f'''Descrevendo palavras(OBS: use uma frase curta para descrever de alguma forma a palavra dada):
+    f'''Descrevendo palavras "use uma frase curta para descrever de alguma forma a palavra dada sem citar o seu radical na dica":
     Banana;
     banana: é uma fruta amarela
 
